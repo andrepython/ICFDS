@@ -4,6 +4,9 @@ Repository associated with International Conference on Frontiers of Data Science
 ## Description
 This repository includes all code and important files required for the short course at the ICFDS 2024.
 
+## Schedule
+
+
 ## Getting Started
 
 ### Dependencies
