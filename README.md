@@ -6,6 +6,7 @@ This repository includes all code and important files required for the short cou
 
 ## Schedule
 
+<img src="https://github.com/andrepython/ICFDS/blob/main/schedule.png" alt="schedule" width="400"/>
 
 ## Getting Started
 
