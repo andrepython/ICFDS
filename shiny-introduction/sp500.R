@@ -1,6 +1,6 @@
 rm(list = ls())
 
-mainDir <- "C:/Users/kizhang/OneDrive - Microsoft/2024-07-08-conference"
+mainDir <- "C:/Users/kizhang/OneDrive - Microsoft/2024-07-08-hangzhou-conference/shiny-introduction"
 setwd(mainDir)
 
 library(data.table)
