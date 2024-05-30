@@ -37,20 +37,15 @@ command to run if program contains helper info
 
 ## Authors
 
-Rui Duan
-Harvard University
+Rui Duan | Harvard University
 
-Kimberly Zhang
-Microsoft
+Kimberly Zhang | Microsoft
 
-Ming Yang
-SZMS Technology
+Ming Yang | SZMS Technology
 
-Tim Lucas
-Leicester University
+Tim Lucas | Leicester University
 
-Andre Python
-Zhejiang University
+Andre Python | Zhejiang University
 
 
 ## Acknowledgments
