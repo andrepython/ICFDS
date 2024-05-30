@@ -1,8 +1,8 @@
-# ICFDS
-Repository associated with International Conference on Frontiers of Data Science (ICFDS), Hangzhou 2024.
+# International Conference on Frontiers of Data Science (ICFDS) |  July 9 - 10, Hangzhou, P.R. China
+Repository associated with the short courses organised July 8, 2024 (one day before the conference start)
 
 ## Description
-This repository includes all code and important files required for the short course at the ICFDS 2024.
+This repository includes all code and important files required for the short courses pre-ICFDS 2024.
 
 ## Schedule
 
@@ -37,8 +37,22 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
+Rui Duan
+Harvard University
+
+Kimberly Zhang
+Microsoft
+
+Ming Yang
+SZMS Technology
+
+Tim Lucas
+Leicester University
+
+Andre Python
+Zhejiang University
 
 
 ## Acknowledgments
 
+We would like to thank the Center of Data Science, Zhejiang University, for their support.
