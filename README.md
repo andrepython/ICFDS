@@ -1,5 +1,5 @@
 # International Conference on Frontiers of Data Science (ICFDS) |  July 9 - 10, Hangzhou, P.R. China
-Repository associated with the short courses organised July 8, 2024 (one day before the conference start)
+Repository associated with the short courses organised July 8, 2024 (one day before the conference starts)
 
 ## Description
 This repository includes all code and important files required for the short courses pre-ICFDS 2024.
