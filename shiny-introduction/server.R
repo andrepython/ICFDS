@@ -9,7 +9,8 @@ server <- function(input, output, session){
              c("Date Added", "Headquarters", "Sector", "Industry"))
     listing[, `Date Added` := as.Date(`Date Added`, "%m/%d/%Y")]
     listing
-  })
+  }) %>% bindCache(file.info("sp500.csv")$mtime,
+                   cache = cachem::cache_disk(dir = file.path(mainDir, "app_cache/cache/listing")))
   
   # Load the .RData file with stock prices for the S&P500
   sp500 <- reactive({
