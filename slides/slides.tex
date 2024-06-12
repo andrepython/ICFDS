@@ -213,16 +213,8 @@
 	\begin{itemize}
 		\item Start with some basic examples from the Shiny gallery like the \href{https://shiny.rstudio.com/gallery/telephones-by-region.html}{\color{blue}{telephones by region dashboard}}
 		\item ui.R is your ``road map" for every feature in the dashboard
-		\begin{itemize}
-			\item $\textnormal{Widgets}^{\href{https://shiny.rstudio.com/gallery/widget-gallery.html}{\color{blue}{1}}, \href{http://shinyapps.dreamrs.fr/shinyWidgets/}{\color{blue}{2}}}$
-			\item \href{https://shiny.rstudio.com/articles/progress.html}{\color{blue}{Progress bars}}
-		\end{itemize}
-		\item server.R
-		\begin{itemize}
-\item server.R connects user inputs from the widgets set up in the UI to calculations in the server through the inputId argument
+		\item server.R connects user inputs from the widgets set up in the UI to calculations in the server through the inputId argument
 %\item \href{https://shiny.rstudio.com/articles/modules.html}{\color{blue}{Modularization}}
-\item \href{https://shiny.rstudio.com/articles/caching.html}{\color{blue}{Caching}}
-		\end{itemize}
 	\end{itemize}
 	
 	%\bigskip % Vertical whitespace
@@ -239,17 +231,32 @@
 
 \section{Beyond the Basics}
 
+%\begin{frame}
+%	\frametitle{Getting Data}
+%	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
+%	
+%	\begin{itemize}
+%	\item Read Excel files from your working directory using fread(), read.csv(), read.xlsx()
+%	\item Load RData files using load()
+%	\item Use \texttt{RODBC::odbcDriverConnect()} to get data from SQL
+%	\end{itemize}
+%	
+%\end{frame}
+
+
 \begin{frame}
-	\frametitle{Getting Data}
+	\frametitle{UI Features}
 	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
 	
 	\begin{itemize}
-	\item Read Excel files from your working directory using fread(), read.csv(), read.xlsx()
-	\item Load RData files using load()
-	\item Use \texttt{RODBC::odbcDriverConnect()} to get data from SQL
-	\end{itemize}
-	
+		\item\href{https://shiny.rstudio.com/gallery/widget-gallery.html}{\color{blue}{Widgets}}
+		\item \href{http://shinyapps.dreamrs.fr/shinyWidgets/}{\color{blue}{Even more widgets}}
+		\item \href{https://shiny.rstudio.com/articles/progress.html}{\color{blue}{Progress bars}}
+		\end{itemize}
 \end{frame}
+
+
+
 
 \subsection{Visuals}
 
@@ -258,7 +265,7 @@
 	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
 	
 	\begin{itemize}
-		\item Charting libraries built on underlying principle of ``layering" visualization elements, giving developers tremendous flexibility
+		\item Charting libraries built on underlying principle of ``layering" visualization elements give developers tremendous flexibility
 		\begin{itemize}
 			\item \texttt{ggplot} 
 			\item \href{https://plotly.com/r/}{\color{blue}{\texttt{plotly}}} (interactive, also available in Python) 
@@ -277,19 +284,6 @@
 	
 \end{frame}
 
-\subsection{Data manipulation}
-
-\begin{frame}
-	\frametitle{Data manipulation}
-	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
-	
-	\begin{itemize}
-			\item Aggregation (e.g., operations like summing by desired grouping) using \texttt{dplyr} or \texttt{data.table}
-			\item melt() and dcast() functions from \texttt{reshape2} to \href{https://seananderson.ca/2013/10/19/reshape/}{\color{blue}{transform}} data between ``long” and ``short” format
-			\item merge() for joining tables
-	\end{itemize}
-\end{frame}
-
 \subsection{reactive() and observe()}
 
 \begin{frame}
@@ -301,30 +295,6 @@
 	\item Key advantage of \texttt{observe()}: Make the server more organized/efficient with the priority argument
 	\end{itemize}
 	
-\end{frame}
-
-\subsection{Caching}
-
-\begin{frame}
-	\frametitle{Caching}
-	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
-	
-	\begin{itemize}
-		\item Use bindCache() to improve performance via caching
-		\item Important to carefully select cache keys, which will determine when cache needs to be refreshed. For example:
-	\begin{itemize}
-		\item Sys.Date() (today's date) to refresh cache file once per day
-		\item Last modified date and time for a file
-		\item Input values
-	\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\subsection{Click and hover events}
-
-\begin{frame}
-	\frametitle{Click and hover events}
-	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle	
 \end{frame}
 
 
@@ -364,9 +334,38 @@
 	
 \end{frame}
 
+
+\subsection{Caching}
+
+\begin{frame}
+	\frametitle{Caching}
+	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
+	
+	\begin{itemize}
+		\item Use bindCache() to improve performance via caching
+		\item Important to carefully select cache keys, which will determine when cache needs to be refreshed. For example:
+	\begin{itemize}
+		\item Sys.Date() (today's date) to refresh cache file once per day
+		\item Last modified date and time for a file
+		\item Input values
+	\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Click and hover events}
+
+\begin{frame}
+	\frametitle{Click and hover events}
+	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle	
+	\begin{itemize}
+	\item Use \texttt{event\_data()} to create linked events and help users dive deeper
+	\item See this \href{https://plotly-r.com/linking-views-with-shiny.html\#shiny-plotly-inputs}{\color{blue}{documentation}} and \href{https://testing-apps.shinyapps.io/plotlyevents/}{\color{blue}{interactive example}} for more details
+	\end{itemize}
+\end{frame}
+
 %------------------------------------------------
 
-\section{Debugging}
+\subsection{Debugging}
 
 \begin{frame}
 	\frametitle{Debugging}
@@ -382,6 +381,21 @@
 \end{frame}
 
 %------------------------------------------------
+
+\section{Data manipulation}
+
+\subsection{Data manipulation}
+
+\begin{frame}
+	\frametitle{Data manipulation}
+	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
+	
+	\begin{itemize}
+			\item Aggregation (e.g., operations like summing, grouping) using \texttt{dplyr} or \texttt{data.table}
+			\item melt() and dcast() functions from \texttt{reshape2} to \href{https://seananderson.ca/2013/10/19/reshape/}{\color{blue}{transform}} data between ``long” and ``short” format
+			\item merge() for joining tables
+	\end{itemize}
+\end{frame}
 
 
 \end{document} 
