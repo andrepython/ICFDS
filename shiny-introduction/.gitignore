@@ -1,0 +1,5 @@
+# ignore files
+.Rhistory
+
+# ignore cache files
+app_cache/

@@ -1,0 +1,35 @@
+rm(list = ls())
+
+# Set working directory
+mainDir <- "C:/Users/kizhang/OneDrive - Microsoft/2024-07-08-hangzhou-conference/shiny-introduction"
+setwd(mainDir)
+
+library(shiny)
+library(shinyjs)
+library(shinydashboard)
+library(shinyWidgets)
+library(ggplot2)
+library(plotly)
+library(data.table)
+# library(scales)
+# library(AzureStor)
+# library(AzureKeyVault)
+# library(shinyMCE)
+# library(openxlsx)
+# library(openxlsx2)
+# library(extrafont)
+# library(RODBC)
+# library(rlang)
+# library(httr)
+# library(jsonlite)
+# library(chieR)
+# library(shinyWidgets)
+library(lubridate)
+# library(tidyverse)
+# library(knitr)
+# library(formattable)
+# library(flextable)
+library(reactable)
+
+shiny::runApp(appDir         = mainDir, 
+              launch.browser = TRUE)
