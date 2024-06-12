@@ -26,15 +26,10 @@ serverFuncs$sp500 <- function(sp500Data, listingData){
                        selectedChoices = c("Alphabet Inc. (Class A)", "Amazon", "Apple Inc.", "Meta Platforms", "Microsoft"))
   })
   
-  output$pricePlot <- renderPlotly({
+  pricePlotDateFilter <- reactive({
+    shiny::req(input$dateRange)
     
-    shiny::req(listingData,
-               sp500Data,
-               input$security,
-               input$dateRange)
-    
-    listing <- listingData
-    data    <- copy(sp500Data)
+    data <- copy(sp500Data)
     
     # Filter by date range
     dateRange <- input$dateRange
@@ -45,16 +40,33 @@ serverFuncs$sp500 <- function(sp500Data, listingData){
     validTickers <- data[, .(minDate = min(Date)), by = Ticker][minDate == firstDate]$Ticker
     data         <- data[Ticker %in% validTickers]
     
-    # Filter by security
-    data <- data[Ticker %in% listing[Security %in% input$security]$Symbol]
-    
     # Adjust prices to base 100 for comparison
     data[, Index := 100 * Price / Open[1], by = .(Ticker)]
     
+    data
+  })
+  
+  pricePlotSecurityFilter <- reactive({
+    shiny::req(pricePlotDateFilter(),
+               input$security)
+    
+    data <- copy(pricePlotDateFilter())
+    
+    # Filter by security
+    data <- data[Ticker %in% listingData[Security %in% input$security]$Symbol]
+    
+    # Melt data
     data <- melt(data,
                  id.vars      = c("Date", "Ticker"),
                  measure.vars = "Index",
                  value.name   = "Index")
+  })
+  
+  output$pricePlot <- renderPlotly({
+    
+    shiny::req(pricePlotSecurityFilter())
+    
+    data <- pricePlotSecurityFilter()
     
     plot_ly(data, 
             x      = ~Date, 

@@ -265,11 +265,19 @@
 	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
 	
 	\begin{itemize}
-		\item Charting libraries built on underlying principle of ``layering" visualization elements give developers tremendous flexibility
-		\begin{itemize}
-			\item \texttt{ggplot} 
-			\item \href{https://plotly.com/r/}{\color{blue}{\texttt{plotly}}} (interactive, also available in Python) 
-		\end{itemize}
+		\item The \texttt{ggplot} and \href{https://plotly.com/r/}{\color{blue}{\texttt{plotly}}} packages are commonly used to create scatter plots, line plots, box plots, etc.
+		\item These charting libraries are based on principle of ``layering" visualization elements, and give developers tremendous flexibility.
+	\end{itemize}
+\end{frame}
+
+\subsection{Click and hover events}
+
+\begin{frame}
+	\frametitle{Click and hover events}
+	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle	
+	\begin{itemize}
+	\item Use \texttt{event\_data()} to create linked events and help users dive deeper
+	\item See this \href{https://plotly-r.com/linking-views-with-shiny.html\#shiny-plotly-inputs}{\color{blue}{documentation}} and \href{https://testing-apps.shinyapps.io/plotlyevents/}{\color{blue}{interactive example}} for more details
 	\end{itemize}
 \end{frame}
 
@@ -284,15 +292,14 @@
 	
 \end{frame}
 
-\subsection{reactive() and observe()}
+\subsection{Reactive Expressions}
 
 \begin{frame}
-	\frametitle{reactive() vs observe()}
+	\frametitle{Reactive Expressions}
 	
 	\begin{itemize}
-	\item \texttt{reactive()} expressions aren't executed until they're explicitly called by something else; they also return a value
-	\item \texttt{observe()} is similar to \texttt{reactive()}, but continuously ``listens'' for changes in its dependencies (e.g., user inputs)
-	\item Key advantage of \texttt{observe()}: Make the server more organized/efficient with the priority argument
+	\item The output of a reactive expression is cached the first time it's run.
+	\item The reactive expression will only be re-run if the server detects a change in any of the input values inside the reactive expression.
 	\end{itemize}
 	
 \end{frame}
@@ -301,7 +308,7 @@
 %------------------------------------------------
 
 \begin{frame}
-	\frametitle{Key Advantage of reactive()}	
+	\frametitle{Key Advantage of Reactive Expressions}	
 	
 	What's the difference?	
 	
@@ -334,7 +341,6 @@
 	
 \end{frame}
 
-
 \subsection{Caching}
 
 \begin{frame}
@@ -352,16 +358,6 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Click and hover events}
-
-\begin{frame}
-	\frametitle{Click and hover events}
-	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle	
-	\begin{itemize}
-	\item Use \texttt{event\_data()} to create linked events and help users dive deeper
-	\item See this \href{https://plotly-r.com/linking-views-with-shiny.html\#shiny-plotly-inputs}{\color{blue}{documentation}} and \href{https://testing-apps.shinyapps.io/plotlyevents/}{\color{blue}{interactive example}} for more details
-	\end{itemize}
-\end{frame}
 
 %------------------------------------------------
 
@@ -383,8 +379,6 @@
 %------------------------------------------------
 
 \section{Data manipulation}
-
-\subsection{Data manipulation}
 
 \begin{frame}
 	\frametitle{Data manipulation}

@@ -11,8 +11,7 @@ server <- function(input, output, session){
             x    = ~x) %>% 
       add_markers(y = ~y,
                   name = "Observations") %>% 
-      add_lines(x    = ~x, 
-                y    = fitted(lm(y ~ x, data = data)),
+      add_lines(y    = fitted(lm(y ~ x, data = data)),
                 name = "Fit")
   })
   
