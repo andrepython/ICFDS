@@ -38,8 +38,8 @@ serverFuncs$sp500 <- function(sp500Data, listingData){
     
     # Filter by date range
     dateRange <- input$dateRange
-    data     <- data[(Date >= min(dateRange)) &
-                       (Date <= max(dateRange))]
+    data      <- data[(Date >= min(dateRange)) &
+                        (Date <= max(dateRange))]
     
     firstDate    <- min(data[Date >= min(dateRange)]$Date)
     validTickers <- data[, .(minDate = min(Date)), by = Ticker][minDate == firstDate]$Ticker

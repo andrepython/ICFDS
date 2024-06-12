@@ -39,23 +39,23 @@ serverFuncs$sectorCompare <- function(sp500Data, listingData){
     data     <- data[(Date >= min(dateRange)) &
                        (Date <= max(dateRange))]
     
-    # Filter by sector
-    data <- data[Ticker %in% listing[`Sector` %in% input$sector]$Symbol]
-    
     firstDate    <- min(data[Date >= min(dateRange)]$Date)
     validTickers <- data[, .(minDate = min(Date)), by = Ticker][minDate == firstDate]$Ticker
     data         <- data[Ticker %in% validTickers]
     
     # Calculate return
     data[, Return := (Price - Open[1]) / Open[1], by = .(Ticker)]
-    
     data <- data[, .SD[.N], by = .(Ticker)]
+    
+    # Filter by sector
+    data <- data[Ticker %in% listing[`Sector` %in% input$sector]$Symbol]
     
     data <- merge(data,
                   listing,
                   by.x = "Ticker",
                   by.y = "Symbol")
     
+    # Create hover label
     data[, label := paste0("Security: ",
                            Security,
                            "\nSector: ",

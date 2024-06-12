@@ -1,4 +1,20 @@
 server <- function(input, output, session){
+  output$regPlot <- renderPlotly({
+    set.seed(1)
+    nobs <- 100
+    data <- data.table(x = runif(nobs, 
+                                 min = 0, 
+                                 max = 100))
+    data[, y := (4 * x) + 10 + rnorm(n = nobs, mean = 0, sd = 16)]
+    
+    plot_ly(data = data,
+            x    = ~x) %>% 
+      add_markers(y = ~y,
+                  name = "Observations") %>% 
+      add_lines(x = ~x, 
+                y = fitted(lm(y ~ x, data = data)),
+                name = "Fit")
+  })
   
   # Read the csv that lists all of the securities in the S&P500
   sp500listing <- reactive({
