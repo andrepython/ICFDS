@@ -1,0 +1,553 @@
+\documentclass[handout, aspectratio = 169, xcolor={dvipsnames}]{beamer}
+
+\usetheme{Pittsburgh}
+
+\usepackage{enumitem, colortbl}
+\usepackage[pagewise, mathlines]{lineno}
+\usepackage{comment}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+
+\setbeamercovered{invisible}
+
+
+\makeatletter
+\def\blfootnote{\gdef\@thefnmark{}\@footnotetext}
+\makeatother
+
+
+
+
+\usepackage[dvipsnames]{xcolor}
+
+
+\graphicspath{{figures/}}
+%\usepackage{tikz}
+
+%\usetikzlibrary{automata,positioning}
+
+%\usepackage{animate}
+%\usepackage[scaled]{berasans}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{epstopdf}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{../../Brown-Paper-6.jpg}}
+
+\title % (optional, only for long titles)
+{}
+\author % (optional, for multiple authors)
+{Tim~\small{C.D.}~\normalsize{Lucas}}
+\institute % (optional)
+{
+}
+%\usepackage{PSTricks}
+
+\makeatletter
+\newlength\beamerleftmargin
+\setlength\beamerleftmargin{\Gm@lmargin}
+
+
+\begin{document}
+
+\begin{frame}
+
+\frametitle{\{shinyscholar\} for modular, reproducible, maintainable \{shiny\} apps.}
+
+\framesubtitle{{\color{black} \textbf{Tim C.D. Lucas}, Simon Smart\\
+\hbox{}\\
+{\small Dept of Popn Health Sciences, University of Leicester}}
+
+\vspace{0.5cm}
+
+
+\includegraphics[height=7pt]{../../bsky.jpeg}{\color{black}  \hspace{0.6mm}\footnotesize{@}\small{StatsForBios.bsky.social}}
+\vspace{0.5cm}
+
+\includegraphics[height=7pt]{../../Twitter_logo_blue-small.png}{\color{black} \hspace{0.6mm}\footnotesize{@}\small{timcdlucas}  \footnotesize{@}\small{statsforbios}}\\
+
+\includegraphics[height=7pt]{../../Ar_Icon_Contact.pdf}{\color{black}  \hspace{0.6mm}\small{tim.lucas}\footnotesize{@}\small{le.ac.uk}}
+
+
+
+
+}
+
+\vspace{-3cm}
+\hspace{-1cm}
+\includegraphics[trim = {0 2cm 0 0}, clip, height=0.57\textheight]{app_screenshots_for_tim6.png}
+
+
+\end{frame}
+
+
+
+
+% 15 minutes?
+\begin{frame}
+\frametitle{shinyscholar (Simon Smart)}
+www.github.com/simon-smart88/shinyscholar
+
+
+\end{frame} 
+
+
+
+
+
+% todo add github link!
+
+% 15 minutes?
+\begin{frame}
+\frametitle{Outline}
+
+\begin{itemize}
+\item The problem
+\item The solution \{shinyscholar\}
+\item Quick guide
+\item NOT a full workshop tutorial
+\end{itemize}
+
+\end{frame} 
+
+
+
+
+% 15 minutes?
+\begin{frame}
+\frametitle{The problem:}
+
+\begin{itemize}
+\item 1000s of lines in one script.
+\item No unit tests.
+\item Unreproducible.
+\item Hard to maintain and extend.
+\item Not modular.
+\end{itemize}
+
+\end{frame} 
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{\{Wallace\}}
+\includegraphics[width=0.95\textwidth]{wallace_prediction.png}
+
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{\{Wallace\}: reproducibility}
+\includegraphics[width=0.95\textwidth]{wallace_code.png}
+
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{\{disagapp\}: what we've done}
+\includegraphics[height=1.3\textheight]{drawing-2.pdf}
+
+\end{frame} 
+
+
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{app_screenshots_for_tim7.png}
+\end{frame} 
+
+
+
+
+\begin{frame}
+\frametitle{Quick guide}
+\framesubtitle{Five (six) Ps}
+
+Proper Planning Prevents (Piss) Poor Performance
+
+
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{Components}
+\includegraphics[width=0.95\textwidth]{schematix.pdf}
+\end{frame} 
+
+\begin{frame}
+\frametitle{Modules}
+\includegraphics[width=0.95\textwidth]{schematix2.pdf}
+\end{frame} 
+
+
+
+\begin{frame}[fragile]
+\frametitle{\{shinyscholar\}}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+modules <- data.frame(
+  "component" = c("load", "load", "plot", "plot"),
+  "long_component" = c("Load data", "Load data", "Plot data", "Plot data"),
+  "module" = c("user", "database", "histogram", "scatter"),
+  "long_module" = c("Upload your own data", "Query a database to obtain data",
+    "Plot the data as a histogram", "Plot the data as a scatterplot"),
+  "map" = c(FALSE, FALSE, FALSE, FALSE),
+  "result" = c(FALSE, FALSE, TRUE, TRUE),
+  "rmd" = c(TRUE, TRUE, TRUE, TRUE),
+  "save" = c(TRUE, TRUE, TRUE, TRUE))
+
+common_objects = c("data", "histogram", "scatter")
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{\{shinyscholar\}}
+\footnotesize{
+\vspace{1mm}
+
+
+
+\renewcommand{\FancyVerbFormatLine}[1]{%
+   \ifnum\value{FancyVerbLine}=2\color{cyan}#1%
+   \else #1\fi}
+
+\begin{Verbatim}
+modules <- data.frame(
+  "component" = c("load", "load", "plot", "plot"),
+  "long_component" = c("Load data", "Load data", "Plot data", "Plot data"),
+  "module" = c("user", "database", "histogram", "scatter"),
+  "long_module" = c("Upload your own data", "Query a database to obtain data",
+    "Plot the data as a histogram", "Plot the data as a scatterplot"),
+  "map" = c(FALSE, FALSE, FALSE, FALSE),
+  "result" = c(FALSE, FALSE, TRUE, TRUE),
+  "rmd" = c(TRUE, TRUE, TRUE, TRUE),
+  "save" = c(TRUE, TRUE, TRUE, TRUE))
+
+common_objects = c("data", "histogram", "scatter")
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{\{shinyscholar\}}
+\footnotesize{
+\vspace{1mm}
+
+
+
+\renewcommand{\FancyVerbFormatLine}[1]{%
+   \ifnum\value{FancyVerbLine}=4\color{cyan}#1%
+   \else #1\fi}
+
+\begin{Verbatim}
+modules <- data.frame(
+  "component" = c("load", "load", "plot", "plot"),
+  "long_component" = c("Load data", "Load data", "Plot data", "Plot data"),
+  "module" = c("user", "database", "histogram", "scatter"),
+  "long_module" = c("Upload your own data", "Query a database to obtain data",
+    "Plot the data as a histogram", "Plot the data as a scatterplot"),
+  "map" = c(FALSE, FALSE, FALSE, FALSE),
+  "result" = c(FALSE, FALSE, TRUE, TRUE),
+  "rmd" = c(TRUE, TRUE, TRUE, TRUE),
+  "save" = c(TRUE, TRUE, TRUE, TRUE))
+
+common_objects = c("data", "histogram", "scatter")
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+\begin{frame}[fragile]
+\frametitle{\{shinyscholar\}.}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+
+shinyscholar::create_template(path = ".", name = "demo", 
+                              author = "Simon E. H. Smart",
+                              include_map = FALSE, 
+                              include_table = TRUE, 
+                              include_code = TRUE, 
+                              common_objects = common_objects, 
+                              modules = modules, install = TRUE)
+
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{shinyscholar_new_app_dir.PNG}
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{shinyscholar_new_app_shinydir.png}
+\end{frame} 
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{\{shinyscholar\}.}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+# We created a pkg called {demo}
+library(demo)
+
+# It has a shiny app called demo
+run_demo()
+\end{Verbatim}
+}
+\end{frame} 
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{shinyscholar_new_app_intro.png}
+\end{frame} 
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{shinyscholar_new_app_components.png}
+\end{frame} 
+
+
+
+
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{session_code.png}
+\end{frame} 
+
+
+
+
+\begin{frame}
+\frametitle{Modules}
+Each module calls \emph{one} function in the top R package.
+\end{frame} 
+
+% so you can test
+% split shiny from non-shiny
+% and for reproducibility (this is what is in markdown).
+
+
+\begin{frame}
+\frametitle{\{shinyscholar\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{shinyscholar_new_app_R.png}
+\end{frame} 
+
+
+
+
+
+\begin{frame}
+\frametitle{To fully edit load database module.}
+
+\begin{itemize}
+\item Add code to \texttt{load\_database.R} in package.
+\item 
+\item Add code to \texttt{load\_database.R} in shiny app.
+\item Edit \texttt{load\_database.md}
+\item Edit \texttt{load\_database.Rmd}
+\item Add packages to \texttt{.yml}
+\end{itemize}
+
+\end{frame} 
+
+
+
+
+\begin{frame}[fragile]
+\frametitle{Add code to \texttt{load\_database.R} in package}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+load_user <- function(x){
+  return(NULL)
+}
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+\begin{frame}[fragile]
+\frametitle{Add code to \texttt{load\_database.R} in package}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+load_user <- function(x){
+  
+  data <- data.frame(x = rnorm(100),
+                     y = rnorm(100))
+  
+  return(data)
+}
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+
+\begin{frame}
+\frametitle{Why put code in a package?}
+
+\begin{itemize}
+\item Testable
+\item Transportable
+\item Used in reproducible Rmarkdown
+\end{itemize}
+
+\end{frame} 
+
+
+\begin{frame}[fragile]
+\frametitle{Add code to \texttt{load\_user.R} in shiny app}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+
+load_user_module_server <- function(id, common, parent_session) {
+  moduleServer(id, function(input, output, session) {
+
+  observeEvent(input$run, {
+    # WARNING ####
+
+    # FUNCTION CALL ####
+    
+    
+    # LOAD INTO COMMON ####
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+\begin{frame}[fragile]
+\frametitle{Add code to \texttt{load\_user.R} in shiny app}
+\footnotesize{
+\vspace{1mm}
+\begin{Verbatim}
+
+load_user_module_server <- function(id, common, parent_session) {
+  moduleServer(id, function(input, output, session) {
+
+  observeEvent(input$run, {
+    # WARNING ####
+
+    # FUNCTION CALL ####
+    
+    data <- load_user()
+    common$data <- data
+    
+    # LOAD INTO COMMON ####
+
+\end{Verbatim}
+}
+\end{frame} 
+
+
+
+
+
+\begin{frame}
+\frametitle{Help}
+
+\begin{itemize}
+\item \{shinyscholar\} is itself a \{shinyscholar\} package/app, so can be used as a guide.
+\item Vignette and README.
+\item Paper (coming soon)
+\item Email us! Happy to help.
+\end{itemize}
+
+\end{frame} 
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{\{disagapp\} (Simon Smart)}
+\includegraphics[width=0.95\textwidth]{app_screenshots_for_tim2.png}
+\end{frame} 
+
+
+
+
+
+
+
+
+    
+\begin{frame}
+
+\frametitle{Please ask me some questions}
+
+
+\includegraphics[height=7pt]{../../bsky.jpeg}{\color{black}  \hspace{0.6mm}\footnotesize{@}\small{StatsForBios.bsky.social}}
+\vspace{0.5cm}
+
+\includegraphics[height=7pt]{../../Twitter_logo_blue-small.png}{\color{black} \hspace{0.6mm}\footnotesize{@}\small{timcdlucas}  \footnotesize{@}\small{statsforbios}}\\
+
+\includegraphics[height=7pt]{../../Ar_Icon_Contact.pdf}{\color{black}  \hspace{0.6mm}\small{tim.lucas}\footnotesize{@}\small{le.ac.uk}}
+
+
+\includegraphics[height=7pt]{../../Ar_Icon_Contact.pdf}{\color{black}  \hspace{0.6mm}\small{ss1545}\footnotesize{@}\small{le.ac.uk}}
+
+\vspace{2cm}
+
+www.github.com/simon-smart88/shinyscholar
+
+
+\hfill % pushes logo the right
+
+\end{frame}
+
+
+
+
+
+
+
+%thanks
+
+
+\end{document}
