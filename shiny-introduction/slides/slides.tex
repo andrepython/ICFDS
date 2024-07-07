@@ -266,7 +266,6 @@
 	
 	\begin{itemize}
 		\item The \texttt{ggplot} and \href{https://plotly.com/r/}{\color{blue}{\texttt{plotly}}} packages are commonly used to create scatter plots, line plots, box plots, etc.
-		\item These packages also have some specialized charts like candlestick plots, which are helpful for visualizing stock prices.
 		\item These charting libraries are based on principle of ``layering" visualization elements, and give developers tremendous flexibility.
 	\end{itemize}
 \end{frame}
@@ -355,11 +354,12 @@
 	
 	\begin{itemize}
 		\item Use bindCache() to improve performance via caching
-		\item Important to carefully select cache keys, which will determine when cache needs to be refreshed. For example:
+		\item Only changes to the values of the cache keys provided to bindCache() wlill trigger a cache refresh
+		\item Examples of commonly used cache keys:
 	\begin{itemize}
 		\item Sys.Date() (today's date) to refresh cache file once per day
-		\item Last modified date and time for a file
-		\item Input values
+		\item Last modified date and time for a file (see the reactive sp500listing in server.R for an example)
+		\item Input values from UI widgets
 	\end{itemize}
 	\end{itemize}
 \end{frame}
