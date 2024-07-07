@@ -243,7 +243,7 @@
 %	
 %\end{frame}
 
-
+\subsection{UI Features}
 \begin{frame}
 	\frametitle{UI Features}
 	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle
@@ -266,6 +266,7 @@
 	
 	\begin{itemize}
 		\item The \texttt{ggplot} and \href{https://plotly.com/r/}{\color{blue}{\texttt{plotly}}} packages are commonly used to create scatter plots, line plots, box plots, etc.
+		\item These packages also have some specialized charts like candlestick plots, which are helpful for visualizing stock prices.
 		\item These charting libraries are based on principle of ``layering" visualization elements, and give developers tremendous flexibility.
 	\end{itemize}
 \end{frame}
@@ -276,8 +277,9 @@
 	\frametitle{Click and hover events}
 	%\framesubtitle{Bullet Points and Numbered Lists} % Optional subtitle	
 	\begin{itemize}
-	\item Use \texttt{event\_data()} to create linked events and help users dive deeper
-	\item See this \href{https://plotly-r.com/linking-views-with-shiny.html\#shiny-plotly-inputs}{\color{blue}{documentation}} and \href{https://testing-apps.shinyapps.io/plotlyevents/}{\color{blue}{interactive example}} for more details
+	\item Use \texttt{event\_data()} to create linked events (e.g., dynamically generate a table or chart based on something a user clicked in a plot)
+	\item See this \href{https://plotly-r.com/linking-views-with-shiny.html\#shiny-plotly-inputs}{\color{blue}{documentation}} and \href{https://testing-apps.shinyapps.io/plotlyevents/}{\color{blue}{interactive example}} for more information on the types of events (e.g., hover, click, brush)
+	\item See Returns by Sector for an example of how to link a plot with a table
 	\end{itemize}
 \end{frame}
 
@@ -298,12 +300,16 @@
 	\frametitle{Reactive Expressions}
 	
 	\begin{itemize}
+	\item Reactive expressions use inputs from UI widgets and return a value
+	\item The key advantage is lazy evaluation, which prevents the server from running code unnecessarily.
+	\begin{itemize}
+\item The code inside the reactive expression is never run if the reactive isn't called.  
 	\item The output of a reactive expression is cached the first time it's run.
-	\item The reactive expression will only be re-run if the server detects a change in any of the input values inside the reactive expression.
+	\item The reactive expression will only be re-run if the server detects a change in any of the input values or other reactives inside the reactive expression.
+	\end{itemize}
 	\end{itemize}
 	
 \end{frame}
-
 
 %------------------------------------------------
 
@@ -321,7 +327,7 @@
 			
 			\indent \textcolor{green}{Filter, sort data based on input\$b}		        
 
-        	\indent \textcolor{blue}{Run calculations data based on input\$c}
+        	\indent \textcolor{blue}{Run calculations on data based on input\$c}
         	
         \})
         \end{itemize}
@@ -386,7 +392,7 @@
 	
 	\begin{itemize}
 			\item Aggregation (e.g., operations like summing, grouping) using \texttt{dplyr} or \texttt{data.table}
-			\item melt() and dcast() functions from \texttt{reshape2} to \href{https://seananderson.ca/2013/10/19/reshape/}{\color{blue}{transform}} data between ``long” and ``short” format
+			\item melt() and dcast() functions from \texttt{reshape2} to \href{https://seananderson.ca/2013/10/19/reshape/}{\color{blue}{transform}} data between ``long” and ``wide” format
 			\item merge() for joining tables
 	\end{itemize}
 \end{frame}
