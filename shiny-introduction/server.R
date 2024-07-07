@@ -7,11 +7,12 @@ server <- function(input, output, session){
                                  max = 100))
     data[, y := (4 * x) + 10 + rnorm(n = nobs, mean = 0, sd = 16)]
     
-    plot_ly(data = data,
-            x    = ~x) %>% 
-      add_markers(y = ~y,
+    plot_ly(data = data) %>% 
+      add_markers(x    = ~x,
+                  y    = ~y,
                   name = "Observations") %>% 
-      add_lines(y    = fitted(lm(y ~ x, data = data)),
+      add_lines(x    = ~x,
+                y    = fitted(lm(y ~ x, data = data)),
                 name = "Fit")
   })
   
